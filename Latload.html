@@ -1,0 +1,790 @@
+﻿<!DOCTYPE html>
+<html>
+   <head>
+      <title>Report</title>
+      <meta charset="UTF-8">
+      <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+   </head>
+   <body>
+      <div style="padding:10px;">
+         <style>
+         /* Style the buttons that are used to open and close the accordion panel */
+         .accordion {
+           background-color: #bcdcf7;
+           color: #070708;
+           cursor: pointer;
+           padding: 24px;
+           width: 100%;
+           text-align: left;
+           border: none;
+           outline: none;
+           transition: 0.4s;
+         }
+         /* Style the accordion panel. Note: hidden by default */
+         .panel {
+           padding: 0 24px;
+           background-color: white;
+           max-height: 100%
+           display: none;
+           overflow: hidden;
+         }
+         .arrow {
+           border: solid black;
+           border-width: 0 3px 3px 0;
+           float: right;
+           padding: 3px;
+           transform: rotate(45deg);
+           -webkit-transform: rotate(45deg);
+         }
+         </style>
+         <button class="accordion">Search for Plans <i class="arrow right"></i></button>
+         <div class="panel" id="tableContainer" style="display: hidden;">
+         <button onclick="sortTable()">Sort by Document No.</button>
+         <input type="text" id="myInput" onkeyup="searchFunction()" placeholder="Search Plan No, (e.g 713)">
+         <div id="myTable" >
+               <table class="table table-striped">
+                  <thead>
+                     <tr>
+                        <th>Document Number</th>
+                        <th>TASK ID</th>
+                        <th>Document Stage</th>
+                        <th>Document Version</th>
+                        <th>Date Completed</th>
+                        <th>Plan Status</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td>PS723204</td>
+                        <td>5236</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>19/11/2013</td>
+                        <td>Application</td>
+                     </tr>
+                     <tr>
+                        <td>PS711540</td>
+                        <td>5993</td>
+                        <td></td>
+                        <td>3</td>
+                        <td>28/11/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS722713</td>
+                        <td>3664</td>
+                        <td></td>
+                        <td>1</td>
+                        <td>18/11/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS720795</td>
+                        <td>3659</td>
+                        <td></td>
+                        <td>A</td>
+                        <td>20/11/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS721533</td>
+                        <td>3656</td>
+                        <td></td>
+                        <td>01</td>
+                        <td>21/11/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS704866</td>
+                        <td>2836</td>
+                        <td></td>
+                        <td>A</td>
+                        <td>28/11/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS723396</td>
+                        <td>5843</td>
+                        <td></td>
+                        <td>01</td>
+                        <td>20/11/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS719993</td>
+                        <td>5826</td>
+                        <td></td>
+                        <td>02</td>
+                        <td>18/11/2013</td>
+                        <td>Certified</td>
+                     </tr>
+                     <tr>
+                        <td>PS725515</td>
+                        <td>5981</td>
+                        <td></td>
+                        <td>01</td>
+                        <td>25/11/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS724456</td>
+                        <td>5865</td>
+                        <td></td>
+                        <td>01</td>
+                        <td>21/11/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS718456</td>
+                        <td>6093</td>
+                        <td></td>
+                        <td>V01</td>
+                        <td>21/11/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS646675</td>
+                        <td>5846</td>
+                        <td></td>
+                        <td>C</td>
+                        <td>19/11/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS721014</td>
+                        <td>4099</td>
+                        <td></td>
+                        <td>1</td>
+                        <td>21/11/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS720796</td>
+                        <td>6125</td>
+                        <td></td>
+                        <td>A</td>
+                        <td>28/11/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS720350</td>
+                        <td>6130</td>
+                        <td></td>
+                        <td>2</td>
+                        <td>28/11/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS724243</td>
+                        <td>6132</td>
+                        <td></td>
+                        <td>V2 (2.10.13)</td>
+                        <td>28/11/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS721664</td>
+                        <td>6134</td>
+                        <td></td>
+                        <td>01</td>
+                        <td>28/11/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS724481</td>
+                        <td>6136</td>
+                        <td></td>
+                        <td>01</td>
+                        <td>28/11/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS716614</td>
+                        <td>6140</td>
+                        <td></td>
+                        <td>1</td>
+                        <td>28/11/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS720547</td>
+                        <td>6148</td>
+                        <td></td>
+                        <td>1</td>
+                        <td>28/11/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS722876</td>
+                        <td>6212</td>
+                        <td></td>
+                        <td>01</td>
+                        <td>28/11/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS724295</td>
+                        <td>6215</td>
+                        <td></td>
+                        <td>01</td>
+                        <td>28/11/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS721317</td>
+                        <td>6216</td>
+                        <td></td>
+                        <td>V1 (23.09.13)</td>
+                        <td>28/11/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS724181</td>
+                        <td>6217</td>
+                        <td></td>
+                        <td>A</td>
+                        <td>28/11/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS720887</td>
+                        <td>6224</td>
+                        <td></td>
+                        <td>1</td>
+                        <td>28/11/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS723017</td>
+                        <td>6068</td>
+                        <td></td>
+                        <td>1</td>
+                        <td>28/11/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS721381</td>
+                        <td>6069</td>
+                        <td></td>
+                        <td>01</td>
+                        <td>28/11/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS722445</td>
+                        <td>6082</td>
+                        <td></td>
+                        <td>2</td>
+                        <td>26/11/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS723535</td>
+                        <td>6097</td>
+                        <td></td>
+                        <td>1</td>
+                        <td>28/11/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS724163</td>
+                        <td>6101</td>
+                        <td></td>
+                        <td>A</td>
+                        <td>28/11/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PC374075</td>
+                        <td>6106</td>
+                        <td></td>
+                        <td>V1</td>
+                        <td>28/11/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS700722</td>
+                        <td>7042</td>
+                        <td></td>
+                        <td>2</td>
+                        <td>12/12/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS716421</td>
+                        <td>7094</td>
+                        <td></td>
+                        <td>1</td>
+                        <td>12/12/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS722405</td>
+                        <td>7112</td>
+                        <td></td>
+                        <td>A</td>
+                        <td>12/12/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS724647</td>
+                        <td>7118</td>
+                        <td></td>
+                        <td>1PSP</td>
+                        <td>12/12/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS719406</td>
+                        <td>7120</td>
+                        <td></td>
+                        <td>1</td>
+                        <td>12/12/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS717381</td>
+                        <td>7121</td>
+                        <td></td>
+                        <td>2</td>
+                        <td>12/12/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS722937</td>
+                        <td>7131</td>
+                        <td></td>
+                        <td>2</td>
+                        <td>12/12/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS725133</td>
+                        <td>7132</td>
+                        <td></td>
+                        <td>04</td>
+                        <td>12/12/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PC372744</td>
+                        <td>7134</td>
+                        <td></td>
+                        <td>1</td>
+                        <td>12/12/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS722408</td>
+                        <td>7138</td>
+                        <td></td>
+                        <td>B</td>
+                        <td>12/12/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS721627</td>
+                        <td>7263</td>
+                        <td></td>
+                        <td>2</td>
+                        <td>12/12/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS723736</td>
+                        <td>5901</td>
+                        <td></td>
+                        <td>01</td>
+                        <td>28/11/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS714478</td>
+                        <td>5949</td>
+                        <td></td>
+                        <td>1</td>
+                        <td>28/11/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS721137</td>
+                        <td>5952</td>
+                        <td></td>
+                        <td>A</td>
+                        <td>26/11/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS722879</td>
+                        <td>5955</td>
+                        <td></td>
+                        <td>02</td>
+                        <td>26/11/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS717280</td>
+                        <td>5956</td>
+                        <td></td>
+                        <td>2</td>
+                        <td>26/11/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS723149</td>
+                        <td>5963</td>
+                        <td></td>
+                        <td>1</td>
+                        <td>26/11/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS716720</td>
+                        <td>5971</td>
+                        <td></td>
+                        <td>01</td>
+                        <td>26/11/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS719703</td>
+                        <td>5974</td>
+                        <td></td>
+                        <td>02</td>
+                        <td>21/11/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS448919</td>
+                        <td>5979</td>
+                        <td></td>
+                        <td>1</td>
+                        <td>21/11/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS711756</td>
+                        <td>5984</td>
+                        <td></td>
+                        <td>01</td>
+                        <td>26/11/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS718116</td>
+                        <td>5976</td>
+                        <td></td>
+                        <td>A</td>
+                        <td>05/12/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS720645</td>
+                        <td>5863</td>
+                        <td></td>
+                        <td>1</td>
+                        <td>05/12/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS722906</td>
+                        <td>5834</td>
+                        <td></td>
+                        <td>13-10-04 V02</td>
+                        <td>21/11/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS723044</td>
+                        <td>5835</td>
+                        <td></td>
+                        <td>1</td>
+                        <td>21/11/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS717129</td>
+                        <td>5839</td>
+                        <td></td>
+                        <td>1</td>
+                        <td>28/11/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS719431</td>
+                        <td>5841</td>
+                        <td></td>
+                        <td>1</td>
+                        <td>21/11/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS723974</td>
+                        <td>5844</td>
+                        <td></td>
+                        <td>1PSP</td>
+                        <td>28/11/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS710475</td>
+                        <td>5850</td>
+                        <td></td>
+                        <td>PS710475R</td>
+                        <td>26/11/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS723537</td>
+                        <td>6108</td>
+                        <td></td>
+                        <td>1</td>
+                        <td>28/11/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS715354</td>
+                        <td>6117</td>
+                        <td></td>
+                        <td>01</td>
+                        <td>28/11/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS709642</td>
+                        <td>6118</td>
+                        <td></td>
+                        <td>2</td>
+                        <td>28/11/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS720608</td>
+                        <td>6119</td>
+                        <td></td>
+                        <td>1</td>
+                        <td>28/11/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS716476</td>
+                        <td>6124</td>
+                        <td></td>
+                        <td>2</td>
+                        <td>28/11/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS713812</td>
+                        <td>7271</td>
+                        <td></td>
+                        <td>A</td>
+                        <td>12/12/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS720886</td>
+                        <td>7296</td>
+                        <td></td>
+                        <td>1</td>
+                        <td>12/12/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS719334</td>
+                        <td>7308</td>
+                        <td></td>
+                        <td>1</td>
+                        <td>12/12/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS715359</td>
+                        <td>7326</td>
+                        <td></td>
+                        <td>01</td>
+                        <td>12/12/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS723244</td>
+                        <td>7374</td>
+                        <td></td>
+                        <td>1</td>
+                        <td>12/12/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS714727</td>
+                        <td>7401</td>
+                        <td></td>
+                        <td>3</td>
+                        <td>12/12/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS724862</td>
+                        <td>7414</td>
+                        <td></td>
+                        <td>1</td>
+                        <td>12/12/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS724859</td>
+                        <td>7416</td>
+                        <td></td>
+                        <td>1</td>
+                        <td>12/12/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS724042</td>
+                        <td>7418</td>
+                        <td></td>
+                        <td>1</td>
+                        <td>12/12/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS722792</td>
+                        <td>7421</td>
+                        <td></td>
+                        <td>1</td>
+                        <td>12/12/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS724465</td>
+                        <td>7427</td>
+                        <td></td>
+                        <td>01</td>
+                        <td>12/12/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS724031</td>
+                        <td>4096</td>
+                        <td></td>
+                        <td>1</td>
+                        <td>28/11/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS722039</td>
+                        <td>4425</td>
+                        <td></td>
+                        <td>1</td>
+                        <td>20/11/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PC373982</td>
+                        <td>5860</td>
+                        <td></td>
+                        <td>01</td>
+                        <td>26/11/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS724480</td>
+                        <td>5870</td>
+                        <td></td>
+                        <td>01</td>
+                        <td>28/11/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS718648</td>
+                        <td>5881</td>
+                        <td></td>
+                        <td>1</td>
+                        <td>26/11/2013</td>
+                        <td>New</td>
+                     </tr>
+                     <tr>
+                        <td>PS717467</td>
+                        <td>5890</td>
+                        <td></td>
+                        <td>01</td>
+                        <td>28/11/2013</td>
+                        <td>New</td>
+                     </tr>
+                  </tbody>
+               </table>
+         </div>
+         </div>
+         <script>
+         var acc = document.getElementsByClassName("accordion");
+         var i;
+         for (i = 0; i < acc.length; i++) {
+           acc[i].addEventListener("click", function() {
+             this.classList.toggle("active");
+             var panel = this.nextElementSibling;
+             if (panel.style.display === "block") {
+               panel.style.display = "none";
+             } else {
+               panel.style.display = "block";
+             }
+           });
+         }
+         function searchFunction() {
+           // Declare variables
+           var input, filter, table, tr, td, i, txtValue;
+           input = document.getElementById("myInput");
+           filter = input.value.toUpperCase();
+           table = document.getElementById("tableContainer");
+           tr = table.getElementsByTagName("tr");
+           // Loop through all table rows, and hide those who don't match the search query
+           for (i = 0; i < tr.length; i++) {
+             td = tr[i].getElementsByTagName("td")[0];
+             if (td) {
+               txtValue = td.textContent || td.innerText;
+               if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                 tr[i].style.display = "";
+               } else {
+                 tr[i].style.display = "none";
+               }
+             }
+           }
+         }
+         function sortTable() {
+           var table, rows, switching, i, x, y, shouldSwitch;
+           table = document.getElementById("myTable");
+           switching = true;
+           /*Make a loop that will continue until
+           no switching has been done:*/
+           while (switching) {
+             //start by saying: no switching is done:
+             switching = false;
+             rows = table.getElementsByTagName("tr");
+             /*Loop through all table rows (except the
+             first, which contains table headers):*/
+             for (i = 1; i < (rows.length - 1); i++) {
+               //start by saying there should be no switching:
+               shouldSwitch = false;
+               /*Get the two elements you want to compare,
+               one from current row and one from the next:*/
+               x = rows[i].getElementsByTagName("TD")[0];
+               y = rows[i + 1].getElementsByTagName("TD")[0];
+               //check if the two rows should switch place:
+               if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                 //if so, mark as a switch and break the loop:
+                 shouldSwitch = true;
+                 break;
+               }
+             }
+             if (shouldSwitch) {
+               /*If a switch has been marked, make the switch
+               and mark that a switch has been done:*/
+               rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+               switching = true;
+             }
+           }
+         }
+         </script>
+         </script>
+      </div>
+   </body>
+</html>
+
